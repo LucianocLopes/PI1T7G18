@@ -20,10 +20,10 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "HOST": "localhost",
+        "HOST": "pi1t7g18damasio.mysql.pythonanywhere-services.com",
         "PORT": "3306",
-        "NAME": "pi1t7g18",
-        "USER": "lucianoclopes",
+        "NAME": "pi1t7g18damasio$default",
+        "USER": "pi1t7g18damasio",
         "PASSWORD": "WiLu010381@",
         "OPTIONS": {
             "charset": "utf8mb4",

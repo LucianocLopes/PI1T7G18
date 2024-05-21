@@ -1,0 +1,1 @@
+web: gunicorn pi1t7g18.wsgi:django-polls --log-file -

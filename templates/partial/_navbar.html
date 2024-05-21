@@ -1,7 +1,7 @@
 {% load static %}
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Tenth navbar example">
-    
+
     <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'index' %}">{{ school.fantasy_name }}</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,15 +28,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'group_all' %}"> <i class="bi bi-people-fill"></i> Turmas</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-bs-toggle="dropdown" aria-expanded="false"> <i class="bi bi-person-circle"></i> {{user.first_name}}</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown08">
-                        <li><a class="dropdown-item" href="#">Informações Pessoais</a></li>
-                        <li><a class="dropdown-item" href="{% url 'teacher_detail' user.id %}">Escala</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Sair</a></li>
-                    </ul>
-                </li>
+                {% if user.is_authenticate %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-bs-toggle="dropdown" aria-expanded="false"> <i class="bi bi-person-circle"></i> {{user.first_name}}</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown08">
+                            <li><a class="dropdown-item" href="#">Informações Pessoais</a></li>
+                            <li><a class="dropdown-item" href="#">Escala</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'account_logout' %}">Sair</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
