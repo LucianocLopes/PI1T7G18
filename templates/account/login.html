@@ -12,6 +12,7 @@
         {% url 'account_login' as login_url %}
         <div class="container col-11 col-md-9" id="form-container">
             <div class="row align-items-center gx-5 mt-3">
+                {% include "partial/_message.html" %}
                 <div class="col-md-6 order-md-2">
                     <h1>Faça seu Login</h1>
                     <form class="form" form method="post" action="{% url 'account_login' %}" tags="entrance,login" autocomplete="off">
