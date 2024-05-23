@@ -53,18 +53,19 @@
                     {% for hour in group.turn.get_hours %}
                         <h2 class="time" style="grid-column: times; grid-row: time-{{ hour }};">{{ hour }}</h2>
                     {% endfor %}
-                    {% for g in grid %}                
-                        {% if g.group == group %}
-                            <div class="session subject-0 {{ grid.dicipline }}" style="grid-column: {{ grid.day_week }}; grid-row: time-{{ grid.get_start }} / time-{{ grid.get_end_lesson }};">
-                                <h3 class="time"></h3>
-                                <h3 class="subject">{{ grid.get_dicipline_display }}</h3>
-                                <span class="time">Início: {{ grid.time_start }}</span>
-                                <span class="time"><p class="small">Duração: {{grid.get_duration_time}}</p></span>
-                                <span class="description">{{grid.description}}</span>
-                                <span class="teacher"><p class="small">{{grid.teacher}}</p></span>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                    {% for grid in grid_group %}
+                    
+                    {% if grid.group == group %}
+                    <div class="session subject-0 {{ grid.dicipline }}" style="grid-column: {{ grid.day_week }}; grid-row: time-{{ grid.get_start }} / time-{{ grid.get_end_lesson }};">
+                        <h3 class="time"></h3>
+                        <h3 class="subject">{{ grid.get_dicipline_display }}</h3>
+                        <span class="time">Início: {{ grid.time_start }}</span>
+                        <span class="time"><p class="small">Duração: {{grid.get_duration_time}}</p></span>
+                        <span class="description">{{grid.description}}</span>
+                        <span class="teacher"><p class="small">{{grid.teacher}}</p></span>
+                    </div>
+                    {% endif %}
+                {% endfor %}
                     <!-- breaks -->
                     <div class="session breaks" style="grid-column: monday-start / friday-end; grid-row: time-{{ group.get_start }} / time-{{ group.get_interval_end }};">
                         <h3 class="subject">Intervalo | Inicio: {{ group.interval_start }} hrs | duração: {{ group.interval_duration }} min</h3>
