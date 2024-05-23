@@ -1,11 +1,8 @@
 {% load static %}
 
-|
-
-
 <div class="container" id="calendario">
     <div id='wrap-calendar'> 
-        {% if perms.calendarevent.add_calendaevent %}
+        {% if perms.calendarevent.add_calendarevent %}
             <div class="btn-group p-2">                        
                 
                 <a href="{% url 'event_all' %}">

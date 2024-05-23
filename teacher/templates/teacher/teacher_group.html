@@ -14,27 +14,20 @@
             <span class="day" aria-hidden="true" style="grid-column: thursday; grid-row: days;">Quinta-Feira</span>
             <span class="day" aria-hidden="true" style="grid-column: friday; grid-row: days;">Sexta-Feira</span>
             <span class="day" aria-hidden="true" style="grid-column: saturday; grid-row: days;">Sábado</span>
-
-            {% if group.turn.id == 1 %}
                 <!-- time slots -->
                 <h2 class="time" style="grid-column: times; grid-row: time-0700;">07:00</h2>
-                <h2 class="time" style="grid-column: times; grid-row: time-0730;">07:30</h2>
-                <h2 class="time" style="grid-column: times; grid-row: time-0800;">08:00</h2>    
-                <h2 class="time" style="grid-column: times; grid-row: time-0830;">08:30</h2>   
+                <h2 class="time" style="grid-column: times; grid-row: time-0800;">08:00</h2>   
                 <h2 class="time" style="grid-column: times; grid-row: time-0900;">09:00</h2>
-                <h2 class="time" style="grid-column: times; grid-row: time-0915;">09:15</h2>
-                <h2 class="time" style="grid-column: times; grid-row: time-0930;">09:30</h2>
                 <h2 class="time" style="grid-column: times; grid-row: time-1000;">10:00</h2>
-                <h2 class="time" style="grid-column: times; grid-row: time-1030;">10:30</h2>
                 <h2 class="time" style="grid-column: times; grid-row: time-1100;">11:00</h2>
-                <h2 class="time" style="grid-column: times; grid-row: time-1130;">11:30</h2>
                 <h2 class="time" style="grid-column: times; grid-row: time-1200;">12:00</h2>       
-                <h2 class="time" style="grid-column: times; grid-row: time-1230;">12:30</h2>    
-            {% endif %}
-            
-                
+                <h2 class="time" style="grid-column: times; grid-row: time-1300;">13:00</h2>
+                <h2 class="time" style="grid-column: times; grid-row: time-1400;">14:00</h2>   
+                <h2 class="time" style="grid-column: times; grid-row: time-1500;">15:00</h2>
+                <h2 class="time" style="grid-column: times; grid-row: time-1600;">16:00</h2>
+                <h2 class="time" style="grid-column: times; grid-row: time-1700;">17:00</h2>
+                <h2 class="time" style="grid-column: times; grid-row: time-1800;">18:00</h2>           
             {% for grid in grid_group %}
-                
                     {% if grid.teacher == teacher %}
                         <div class="session subject-0 {{ grid.dicipline }}" style="grid-column: {{ grid.day_week }}; grid-row: time-{{ grid.get_start }} / time-{{ grid.get_end_lesson }};">
                             <h3 class="time"></h3>
@@ -46,15 +39,6 @@
                         </div>
                     {% endif %}                    
             {% endfor %}
-            
-            {% if group.interval_start %}
-            
-                <!-- breaks -->
-                <div class="session breaks" style="grid-column: monday-start / friday-end; grid-row: time-{{ group.get_start }} / time-{{ group.get_interval_end }};">
-                    <h3 class="subject">Intervalo</h3>
-                </div>
-            
-            {% endif %}
         </div>
     </div>
 {% endblock content %}
