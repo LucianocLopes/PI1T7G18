@@ -34,8 +34,8 @@
                             <h3 class="subject">{{ grid.get_dicipline_display }}</h3>
                             <span class="time">Início: {{ grid.time_start }}</span>
                             <span class="time"><p class="small">Duração: {{grid.get_duration_time}}</p></span>
-                            <span class="description">{{grid.description}}</span>
-                            <span class="teacher"><p class="small">{{grid.group}}</p></span>
+                            <span class="description">{{ grid.description }}</span>
+                            <span class="teacher"><p class="small">{{ grid.group.graduation }} {{ grid.group.group_id }}</p></span>
                         </div>
                     {% endif %}                    
             {% endfor %}

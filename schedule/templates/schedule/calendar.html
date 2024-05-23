@@ -2,14 +2,11 @@
 
 <div class="container" id="calendario">
     <div id='wrap-calendar'> 
-        {% if perms.schedule.add_schedule %}
             <div class="btn-group p-2">                        
-                
                 <a href="{% url 'event_all' %}">
                     <button type="button" class="btn btn-sm btn-outline-primary">Lista de Eventos</button>
                 </a>
             </div>
-        {% endif %}
         <div class="btn-group p-2">                        
             <a href="{% url 'week_events' %}">
                 <button type="button" class="btn btn-sm btn-outline-success">Eventos da Semana</button>

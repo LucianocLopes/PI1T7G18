@@ -20,7 +20,7 @@
                         {% for phone in phones %}
                         
                             {% if phone.school == school %}
-                                <p class="lead text-muted"><b>{{ phone.get_phone_type_display}}: </b> +{{ phone.contry_code }} ({{ phone.locale_code }}) {{ phone.number }}</p>
+                                <p class="lead text-muted"><b>{{ phone.get_phone_type_display }}: </b> +{{ phone.country_code }} ({{ phone.locale_code }}) {{ phone.number }}</p>
                             {% endif %}
                                 
                         {% endfor %}
