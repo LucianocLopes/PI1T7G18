@@ -104,6 +104,7 @@ def list_events(request):
     )
 
 
+
 class EventBaseView(PermissionRequiredMixin, View):
     model = CalendarEvent
     success_url = reverse_lazy('event_all')
@@ -126,19 +127,19 @@ class EventDetailView(EventBaseView, DetailView):
     permission_required = 'calendarevent.change_calendarevent'
     form_class = CalendarEventForm
 
-
 class EventCreateView(EventBaseView, CreateView):
     'createview'
     permission_required = 'calendarevent.add_calendarevent'
     form_class = CalendarEventForm
-
+    success_url = reverse_lazy('event_all')
 
 class EventUpdateView(EventBaseView, UpdateView):
     'updadeview'
     permission_required = 'calendarevent.add_calendarevent'
     form_class = CalendarEventForm
-
+    success_url = reverse_lazy('event_all')
 
 class EventDeleteView(EventBaseView, DeleteView):
     'deleteview'
     permission_required = 'calendarevent.delete_calendarevent'
+    success_url = reverse_lazy('event_all')

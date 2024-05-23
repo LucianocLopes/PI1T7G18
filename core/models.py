@@ -16,8 +16,10 @@ class State(models.Model):
     def __str__(self):
         return self.name.title()
 
-    def get_absolute_url(self):
-        return reverse("State_detail", kwargs={"pk": self.pk})
+    def get_fields(self):
+        return [(field.verbose_name, field.value_from_object(self))
+                for field in self.__class__._meta.fields[1:]
+                ]
     
     def get_uf(self):
         return self.acronym.upper()
@@ -40,8 +42,10 @@ class City(models.Model):
     def __str__(self):
         return self.name.title()
 
-    def get_absolute_url(self):
-        return reverse("City_detail", kwargs={"pk": self.pk})
+    def get_fields(self):
+        return [(field.verbose_name, field.value_from_object(self))
+                for field in self.__class__._meta.fields[1:]
+                ]
 
     def get_cityuf(self):
         return f'{self.name.title()}/{self.state.get_uf()}'
@@ -58,8 +62,10 @@ class AddressType(models.Model):
     def __str__(self):
         return self.name.title()
 
-    def get_absolute_url(self):
-        return reverse("AddressType_detail", kwargs={"pk": self.pk})
+    def get_fields(self):
+        return [(field.verbose_name, field.value_from_object(self))
+                for field in self.__class__._meta.fields[1:]
+                ]
 
 
 class Address(models.Model):
@@ -85,8 +91,10 @@ class Address(models.Model):
     def __str__(self):
         return self.zip_code
 
-    def get_absolute_url(self):
-        return reverse("Address_detail", kwargs={"pk": self.pk})
+    def get_fields(self):
+            return [(field.verbose_name, field.value_from_object(self))
+                    for field in self.__class__._meta.fields[1:]
+                    ]
 
     def get_address(self):
         return f'{self.zip_code} - {self.address_type} {self.address.title()} - {self.district.title()} - {self.city.get_cityuf}'

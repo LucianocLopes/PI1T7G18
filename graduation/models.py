@@ -30,7 +30,11 @@ class Graduation(models.Model):
 
     def __str__(self):
         return self.name.title()
-
+    
+    def get_fields(self):
+        return [(field.verbose_name, field.value_from_object(self))
+                for field in self.__class__._meta.fields[1:]
+                ]
 
 class Discipline(models.Model):
 
@@ -45,3 +49,7 @@ class Discipline(models.Model):
     def __str__(self):
         return self.name.title()
 
+    def get_fields(self):
+        return [(field.verbose_name, field.value_from_object(self))
+                for field in self.__class__._meta.fields[1:]
+                ]

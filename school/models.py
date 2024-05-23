@@ -19,6 +19,11 @@ class School(models.Model):
     def __str__(self):
         return self.name.title()
 
+    def get_fields(self):
+        return [(field.verbose_name, field.value_from_object(self))
+                for field in self.__class__._meta.fields[1:]
+                ]
+    
     def get_fantasy(self):
         return self.fantasy_name.title()
 
@@ -58,6 +63,10 @@ class AddressSchool(models.Model):
     def __str__(self):
         return f'CEP: {self.get_zip_code} - Endereço: {self.get_address()}, {self.number}, {self.complement} - {self.get_city_state()}'
 
+    def get_fields(self):
+        return [(field.verbose_name, field.value_from_object(self))
+                for field in self.__class__._meta.fields[1:]
+                ]
 
 class PhoneSchool(PhoneBase):
 
@@ -95,6 +104,11 @@ class PhoneSchool(PhoneBase):
     
     def is_upperclass(self):
         return self.phone_type in {self.CELULAR, self.PRINCIPAL}
+
+    def get_fields(self):
+        return [(field.verbose_name, field.value_from_object(self))
+                for field in self.__class__._meta.fields[1:]
+                ]
 
     class Meta:
         verbose_name = _("Telefone da Escola")
@@ -143,6 +157,12 @@ class TurnSchool(models.Model):
     def __str__(self):
         return self.name.title()
 
+    def get_fields(self):
+        return [(field.verbose_name, field.value_from_object(self))
+                for field in self.__class__._meta.fields[1:]
+                ]
+
+
 class ClassRoom(models.Model):
     PADRAO = 'P'
     ESPECIAL = 'E'
@@ -178,6 +198,10 @@ class ClassRoom(models.Model):
     def __str__(self):
         return f'Sala {self.identification}'
 
+    def get_fields(self):
+        return [(field.verbose_name, field.value_from_object(self))
+                for field in self.__class__._meta.fields[1:]
+                ]
 
 class SchoolYear(models.Model):
     school = models.ForeignKey(
@@ -226,4 +250,8 @@ class SchoolYear(models.Model):
     def __str__(self):
         return f'Ano: {self.first_start.year}'
     
+    def get_fields(self):
+        return [(field.verbose_name, field.value_from_object(self))
+                for field in self.__class__._meta.fields[1:]
+                ]    
     

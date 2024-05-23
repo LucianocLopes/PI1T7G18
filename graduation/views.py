@@ -11,6 +11,7 @@ from .models import Discipline, Graduation
 from .forms import DisciplineForm, GraduationForm
 from school.models import School
 
+
 class DisciplineBaseView(PermissionRequiredMixin, View):
     model = Discipline
     templatename = 'discipline/discipline_list.html'
@@ -36,16 +37,14 @@ class DisciplineDetailView(DisciplineBaseView, DetailView):
 class DisciplineCreateView(DisciplineBaseView, CreateView):
     'createview'
     permission_required = 'discipline.add_discipline'
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+    success_url = reverse_lazy('discipline_all')
+    
 
 
 class DisciplineUpdateView(DisciplineBaseView, UpdateView):
     'updadeview'
     permission_required = 'discipline.change_discipline'
-
+    success_url = reverse_lazy('discipline_all')
 
 class DisciplineDeleteView(DisciplineBaseView, DeleteView):
     'deleteview'
@@ -78,17 +77,16 @@ class GraduationDetailView(GraduationBaseView, DetailView):
 class GraduationCreateView(GraduationBaseView, CreateView):
     'createview'
     permission_required = 'graduation.add_graduation'
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
-
+    success_url = reverse_lazy('graduation_all')
+    
 
 class GraduationUpdateView(GraduationBaseView, UpdateView):
     'updadeview'
     permission_required = 'graduation.change_graduation'
-
+    success_url = reverse_lazy('graduation_all')
 
 class GraduationDeleteView(GraduationBaseView, DeleteView):
     'deleteview'
     permission_required = 'graduation.delete_graduation'
+    success_url = reverse_lazy('graduation_all')
+    
