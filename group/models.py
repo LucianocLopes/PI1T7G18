@@ -1,8 +1,7 @@
-from typing import Iterable
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from datetime import datetime, timedelta
-from django.urls import reverse
 
 from school.models import School, ClassRoom, TurnSchool, SchoolYear
 from teacher.models import Teacher
@@ -93,6 +92,11 @@ class Group(models.Model):
     @property
     def get_duration_interval(self):
         return f'{self.interval_duration / 60 } h'
+    
+    def get_fields(self):
+        return [(field.verbose_name, field.value_from_object(self))
+                for field in self.__class__._meta.fields[1:]
+                ]
 
 class GridGroup(models.Model):
 
@@ -136,6 +140,8 @@ class GridGroup(models.Model):
     def __str__(self):
         return f''
 
-    def get_absolute_url(self):
-        return reverse("gridgroup_detail", kwargs={"pk": self.pk})
+    def get_fields(self):
+        return [(field.verbose_name, field.value_from_object(self))
+                for field in self.__class__._meta.fields[1:]
+                ]
     

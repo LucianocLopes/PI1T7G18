@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -114,6 +114,27 @@ class TurnSchool(models.Model):
     )
     start_time = models.TimeField(_("Hora de Início"))
     duration = models.DurationField(_("Duração"))
+
+    @property
+    def get_period(self):
+        data = datetime.now()
+        half = datetime(year=data.year, month=data.month, day=data.day, hour=12)
+        start = datetime(year=data.year, month=data.month, day=data.day, hour=self.start_time.hour)
+        if start < half:
+            return "Manhã"
+        
+        return 'Tarde'
+    
+    @property
+    def get_hours(self):
+        data = datetime.now()
+        start = datetime(year=data.year, month=data.month, day=data.day, hour=self.start_time.hour, minute=self.start_time.minute)
+        list_hour = []
+        for hour in range(0, int((self.duration.seconds / 60) / 60)):
+            data_hour = start + timedelta(hours=hour)
+            
+            list_hour.append(datetime.strftime(data_hour, "%H%M"))
+        return list_hour
 
     class Meta:
         verbose_name = _("Turno Escolar")

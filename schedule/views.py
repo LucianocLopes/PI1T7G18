@@ -107,6 +107,7 @@ def list_events(request):
 class EventBaseView(PermissionRequiredMixin, View):
     model = CalendarEvent
     success_url = reverse_lazy('event_all')
+    
 
     def get_context_data(self, **kwargs):
         context = super(EventBaseView, self).get_context_data(**kwargs)

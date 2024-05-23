@@ -3,10 +3,11 @@ from django import forms
 from .models import Group, GridGroup
 
 
+
 class GroupForm(forms.ModelForm):
     
-    class Mete:
-        model: Group
+    class Meta:
+        model = Group
         fields = '__all__'
 
 
