@@ -23,7 +23,7 @@ class GridGroupDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(GridGroupDetailView, self).get_context_data(**kwargs)
         context['school'] = School.objects.all().annotate().first()
-        context['grid'] = GridGroup.objects.select_related().all()
+        context['grid_group'] = GridGroup.objects.select_related().all()
         return context
 
 class GroupBaseView(PermissionRequiredMixin, View):
